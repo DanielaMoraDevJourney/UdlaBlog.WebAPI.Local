@@ -9,7 +9,6 @@ namespace UdlaBlog.Infrastructure.Data
 
         public DbSet<BlogFica> BlogFicas { get; set; }
         public DbSet<BlogNodo> BlogNodos { get; set; }
-        public DbSet<Tag> Tags { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<User> Users { get; set; }
 
@@ -17,7 +16,7 @@ namespace UdlaBlog.Infrastructure.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // Configuraciones adicionales si es necesario
+            // Elimina la configuración de Tags
         }
     }
 }

@@ -11,12 +11,10 @@ using UdlaBlog.Domain.Interfaces;
 public class BlogFicaController : ControllerBase
 {
     private readonly IBlogFicaRepository _blogRepository;
-    private readonly ITagRepository _tagRepository;
 
-    public BlogFicaController(IBlogFicaRepository blogRepository, ITagRepository tagRepository)
+    public BlogFicaController(IBlogFicaRepository blogRepository)
     {
         _blogRepository = blogRepository;
-        _tagRepository = tagRepository;
     }
 
     [HttpGet]
@@ -40,16 +38,6 @@ public class BlogFicaController : ControllerBase
     [HttpPost]
     public async Task<ActionResult> PostBlog(BlogFicaDto blogFicaDto)
     {
-        var tags = new List<Tag>();
-        foreach (var tagDto in blogFicaDto.Tags)
-        {
-            var tag = await _tagRepository.GetByIdAsync(tagDto.Id);
-            if (tag != null)
-            {
-                tags.Add(tag);
-            }
-        }
-
         var blogFica = new BlogFica
         {
             Encabezado = blogFicaDto.Encabezado,
@@ -60,7 +48,7 @@ public class BlogFicaController : ControllerBase
             FechaPublicacion = blogFicaDto.FechaPublicacion,
             Autor = blogFicaDto.Autor,
             Visible = blogFicaDto.Visible,
-            Tags = tags
+            Comments = new List<Comment>()
         };
 
         await _blogRepository.AddAsync(blogFica);
@@ -75,16 +63,6 @@ public class BlogFicaController : ControllerBase
             return BadRequest();
         }
 
-        var tags = new List<Tag>();
-        foreach (var tagDto in blogFicaDto.Tags)
-        {
-            var tag = await _tagRepository.GetByIdAsync(tagDto.Id);
-            if (tag != null)
-            {
-                tags.Add(tag);
-            }
-        }
-
         var blogFica = new BlogFica
         {
             Id = blogFicaDto.Id,
@@ -96,7 +74,7 @@ public class BlogFicaController : ControllerBase
             FechaPublicacion = blogFicaDto.FechaPublicacion,
             Autor = blogFicaDto.Autor,
             Visible = blogFicaDto.Visible,
-            Tags = tags
+            Comments = new List<Comment>()
         };
 
         await _blogRepository.UpdateAsync(blogFica);
@@ -109,5 +87,4 @@ public class BlogFicaController : ControllerBase
         await _blogRepository.DeleteAsync(id);
         return NoContent();
     }
-    //cambio
 }

@@ -89,31 +89,6 @@ namespace UdlaBlog.WebAPI.Local.Migrations
                         principalColumn: "Id");
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Tags",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DisplayNombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BlogFicaId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    BlogNodoId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Tags", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Tags_BlogFicas_BlogFicaId",
-                        column: x => x.BlogFicaId,
-                        principalTable: "BlogFicas",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Tags_BlogNodos_BlogNodoId",
-                        column: x => x.BlogNodoId,
-                        principalTable: "BlogNodos",
-                        principalColumn: "Id");
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_BlogFicaId",
                 table: "Comments",
@@ -123,16 +98,6 @@ namespace UdlaBlog.WebAPI.Local.Migrations
                 name: "IX_Comments_BlogNodoId",
                 table: "Comments",
                 column: "BlogNodoId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Tags_BlogFicaId",
-                table: "Tags",
-                column: "BlogFicaId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Tags_BlogNodoId",
-                table: "Tags",
-                column: "BlogNodoId");
         }
 
         /// <inheritdoc />
@@ -140,9 +105,6 @@ namespace UdlaBlog.WebAPI.Local.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Comments");
-
-            migrationBuilder.DropTable(
-                name: "Tags");
 
             migrationBuilder.DropTable(
                 name: "Users");

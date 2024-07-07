@@ -20,7 +20,6 @@ namespace UdlaBlog.Infrastructure.Repositories
         public async Task<BlogFica> GetByIdAsync(Guid id)
         {
             return await _context.BlogFicas
-                .Include(b => b.Tags)
                 .Include(b => b.Comments)
                 .FirstOrDefaultAsync(b => b.Id == id);
         }
@@ -28,7 +27,6 @@ namespace UdlaBlog.Infrastructure.Repositories
         public async Task<IEnumerable<BlogFica>> GetAllAsync()
         {
             return await _context.BlogFicas
-                .Include(b => b.Tags)
                 .Include(b => b.Comments)
                 .ToListAsync();
         }

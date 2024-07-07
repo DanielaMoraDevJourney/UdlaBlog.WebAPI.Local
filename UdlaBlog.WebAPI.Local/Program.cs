@@ -12,7 +12,6 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
 builder.Services.AddScoped<IBlogFicaRepository, BlogFicaRepository>();
 builder.Services.AddScoped<IBlogNodoRepository, BlogNodoRepository>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
-builder.Services.AddScoped<ITagRepository, TagRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 builder.Services.AddControllers().AddJsonOptions(options =>

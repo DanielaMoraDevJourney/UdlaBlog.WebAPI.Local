@@ -12,7 +12,7 @@ using UdlaBlog.Infrastructure.Data;
 namespace UdlaBlog.WebAPI.Local.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240707031325_Inicio")]
+    [Migration("20240707231409_Inicio")]
     partial class Inicio
     {
         /// <inheritdoc />
@@ -135,35 +135,6 @@ namespace UdlaBlog.WebAPI.Local.Migrations
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("UdlaBlog.Domain.Entities.Tag", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("BlogFicaId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("BlogNodoId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("DisplayNombre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BlogFicaId");
-
-                    b.HasIndex("BlogNodoId");
-
-                    b.ToTable("Tags");
-                });
-
             modelBuilder.Entity("UdlaBlog.Domain.Entities.User", b =>
                 {
                     b.Property<string>("Username")
@@ -205,29 +176,14 @@ namespace UdlaBlog.WebAPI.Local.Migrations
                     b.Navigation("BlogNodo");
                 });
 
-            modelBuilder.Entity("UdlaBlog.Domain.Entities.Tag", b =>
-                {
-                    b.HasOne("UdlaBlog.Domain.Entities.BlogFica", null)
-                        .WithMany("Tags")
-                        .HasForeignKey("BlogFicaId");
-
-                    b.HasOne("UdlaBlog.Domain.Entities.BlogNodo", null)
-                        .WithMany("Tags")
-                        .HasForeignKey("BlogNodoId");
-                });
-
             modelBuilder.Entity("UdlaBlog.Domain.Entities.BlogFica", b =>
                 {
                     b.Navigation("Comments");
-
-                    b.Navigation("Tags");
                 });
 
             modelBuilder.Entity("UdlaBlog.Domain.Entities.BlogNodo", b =>
                 {
                     b.Navigation("Comments");
-
-                    b.Navigation("Tags");
                 });
 #pragma warning restore 612, 618
         }

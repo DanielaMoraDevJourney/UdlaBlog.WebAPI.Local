@@ -32,7 +32,5 @@ namespace UdlaBlog.Application.DTOs
         public bool Visible { get; set; }
 
         public ICollection<CommentDto> Comments { get; set; } = new List<CommentDto>();
-
-        public ICollection<TagDto> Tags { get; set; } = new List<TagDto>();
     }
 }

@@ -31,8 +31,6 @@ namespace UdlaBlog.Domain.Entities
         [Required]
         public bool Visible { get; set; }
 
-        public ICollection<Tag> Tags { get; set; } = new List<Tag>();
-
         public ICollection<Comment> Comments { get; set; } = new List<Comment>();
     }
 }

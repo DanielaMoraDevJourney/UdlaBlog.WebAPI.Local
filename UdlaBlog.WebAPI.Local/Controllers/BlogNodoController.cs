@@ -11,12 +11,10 @@ using UdlaBlog.Domain.Interfaces;
 public class BlogNodoController : ControllerBase
 {
     private readonly IBlogNodoRepository _blogRepository;
-    private readonly ITagRepository _tagRepository;
 
-    public BlogNodoController(IBlogNodoRepository blogRepository, ITagRepository tagRepository)
+    public BlogNodoController(IBlogNodoRepository blogRepository)
     {
         _blogRepository = blogRepository;
-        _tagRepository = tagRepository;
     }
 
     [HttpGet]
@@ -40,16 +38,6 @@ public class BlogNodoController : ControllerBase
     [HttpPost]
     public async Task<ActionResult> PostBlog(BlogNodoDto blogNodoDto)
     {
-        var tags = new List<Tag>();
-        foreach (var tagDto in blogNodoDto.Tags)
-        {
-            var tag = await _tagRepository.GetByIdAsync(tagDto.Id);
-            if (tag != null)
-            {
-                tags.Add(tag);
-            }
-        }
-
         var blogNodo = new BlogNodo
         {
             Encabezado = blogNodoDto.Encabezado,
@@ -60,7 +48,7 @@ public class BlogNodoController : ControllerBase
             FechaPublicacion = blogNodoDto.FechaPublicacion,
             Autor = blogNodoDto.Autor,
             Visible = blogNodoDto.Visible,
-            Tags = tags
+            Comments = new List<Comment>()
         };
 
         await _blogRepository.AddAsync(blogNodo);
@@ -75,16 +63,6 @@ public class BlogNodoController : ControllerBase
             return BadRequest();
         }
 
-        var tags = new List<Tag>();
-        foreach (var tagDto in blogNodoDto.Tags)
-        {
-            var tag = await _tagRepository.GetByIdAsync(tagDto.Id);
-            if (tag != null)
-            {
-                tags.Add(tag);
-            }
-        }
-
         var blogNodo = new BlogNodo
         {
             Id = blogNodoDto.Id,
@@ -96,7 +74,7 @@ public class BlogNodoController : ControllerBase
             FechaPublicacion = blogNodoDto.FechaPublicacion,
             Autor = blogNodoDto.Autor,
             Visible = blogNodoDto.Visible,
-            Tags = tags
+            Comments = new List<Comment>()
         };
 
         await _blogRepository.UpdateAsync(blogNodo);
