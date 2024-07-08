@@ -12,5 +12,7 @@ namespace UdlaBlog.Domain.Interfaces
         Task AddAsync(BlogFica entity);
         Task UpdateAsync(BlogFica entity);
         Task DeleteAsync(Guid id);
+        Task<BlogFica> GetByTitleAsync(string title);
     }
+
 }

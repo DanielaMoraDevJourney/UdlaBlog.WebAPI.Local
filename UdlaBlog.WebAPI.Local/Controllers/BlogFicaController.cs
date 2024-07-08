@@ -35,6 +35,17 @@ public class BlogFicaController : ControllerBase
         return Ok(blog);
     }
 
+    [HttpGet("byTitle/{title}")]
+    public async Task<ActionResult<BlogFica>> GetBlogByTitle(string title)
+    {
+        var blog = await _blogRepository.GetByTitleAsync(title);
+        if (blog == null)
+        {
+            return NotFound();
+        }
+        return Ok(blog);
+    }
+
     [HttpPost]
     public async Task<ActionResult> PostBlog(BlogFicaDto blogFicaDto)
     {

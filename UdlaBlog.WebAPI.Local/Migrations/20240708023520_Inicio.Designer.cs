@@ -12,7 +12,7 @@ using UdlaBlog.Infrastructure.Data;
 namespace UdlaBlog.WebAPI.Local.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240708014807_Inicio")]
+    [Migration("20240708023520_Inicio")]
     partial class Inicio
     {
         /// <inheritdoc />

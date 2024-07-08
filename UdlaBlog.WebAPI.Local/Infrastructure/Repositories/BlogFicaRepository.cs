@@ -52,5 +52,13 @@ namespace UdlaBlog.Infrastructure.Repositories
                 await _context.SaveChangesAsync();
             }
         }
+
+        public async Task<BlogFica> GetByTitleAsync(string title)
+        {
+            return await _context.BlogFicas
+                .Include(b => b.Comments)
+                .FirstOrDefaultAsync(b => b.Titulo == title);
+        }
+
     }
 }
