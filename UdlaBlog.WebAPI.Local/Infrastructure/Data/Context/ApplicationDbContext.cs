@@ -14,9 +14,17 @@ namespace UdlaBlog.Infrastructure.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<BlogFica>()
+                .HasMany(b => b.Comments)
+                .WithOne(c => c.BlogFica)
+                .HasForeignKey(c => c.BlogFicaId)
+                .OnDelete(DeleteBehavior.Cascade);
 
-            // Elimina la configuración de Tags
+            modelBuilder.Entity<BlogNodo>()
+                .HasMany(b => b.Comments)
+                .WithOne(c => c.BlogNodo)
+                .HasForeignKey(c => c.BlogNodoId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

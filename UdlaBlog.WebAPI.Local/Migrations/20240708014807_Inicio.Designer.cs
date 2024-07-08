@@ -12,7 +12,7 @@ using UdlaBlog.Infrastructure.Data;
 namespace UdlaBlog.WebAPI.Local.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240707231409_Inicio")]
+    [Migration("20240708014807_Inicio")]
     partial class Inicio
     {
         /// <inheritdoc />
@@ -31,35 +31,13 @@ namespace UdlaBlog.WebAPI.Local.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Autor")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Contenido")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DescripcionCorta")
+                    b.Property<string>("Titulo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Encabezado")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("FechaPublicacion")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("TituloPagina")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UrlImagenDestacada")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Visible")
-                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -72,35 +50,13 @@ namespace UdlaBlog.WebAPI.Local.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Autor")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Contenido")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DescripcionCorta")
+                    b.Property<string>("Titulo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Encabezado")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("FechaPublicacion")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("TituloPagina")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UrlImagenDestacada")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Visible")
-                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -165,11 +121,13 @@ namespace UdlaBlog.WebAPI.Local.Migrations
                 {
                     b.HasOne("UdlaBlog.Domain.Entities.BlogFica", "BlogFica")
                         .WithMany("Comments")
-                        .HasForeignKey("BlogFicaId");
+                        .HasForeignKey("BlogFicaId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("UdlaBlog.Domain.Entities.BlogNodo", "BlogNodo")
                         .WithMany("Comments")
-                        .HasForeignKey("BlogNodoId");
+                        .HasForeignKey("BlogNodoId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("BlogFica");
 

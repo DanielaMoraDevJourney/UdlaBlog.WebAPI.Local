@@ -40,14 +40,8 @@ public class BlogNodoController : ControllerBase
     {
         var blogNodo = new BlogNodo
         {
-            Encabezado = blogNodoDto.Encabezado,
-            TituloPagina = blogNodoDto.TituloPagina,
+            Titulo = blogNodoDto.Titulo,
             Contenido = blogNodoDto.Contenido,
-            DescripcionCorta = blogNodoDto.DescripcionCorta,
-            UrlImagenDestacada = blogNodoDto.UrlImagenDestacada,
-            FechaPublicacion = blogNodoDto.FechaPublicacion,
-            Autor = blogNodoDto.Autor,
-            Visible = blogNodoDto.Visible,
             Comments = new List<Comment>()
         };
 
@@ -66,14 +60,8 @@ public class BlogNodoController : ControllerBase
         var blogNodo = new BlogNodo
         {
             Id = blogNodoDto.Id,
-            Encabezado = blogNodoDto.Encabezado,
-            TituloPagina = blogNodoDto.TituloPagina,
+            Titulo = blogNodoDto.Titulo,
             Contenido = blogNodoDto.Contenido,
-            DescripcionCorta = blogNodoDto.DescripcionCorta,
-            UrlImagenDestacada = blogNodoDto.UrlImagenDestacada,
-            FechaPublicacion = blogNodoDto.FechaPublicacion,
-            Autor = blogNodoDto.Autor,
-            Visible = blogNodoDto.Visible,
             Comments = new List<Comment>()
         };
 

@@ -16,14 +16,8 @@ namespace UdlaBlog.WebAPI.Local.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Encabezado = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TituloPagina = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Contenido = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DescripcionCorta = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UrlImagenDestacada = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FechaPublicacion = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Autor = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Visible = table.Column<bool>(type: "bit", nullable: false)
+                    Titulo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Contenido = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -35,14 +29,8 @@ namespace UdlaBlog.WebAPI.Local.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Encabezado = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TituloPagina = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Contenido = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DescripcionCorta = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UrlImagenDestacada = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FechaPublicacion = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Autor = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Visible = table.Column<bool>(type: "bit", nullable: false)
+                    Titulo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Contenido = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -81,12 +69,14 @@ namespace UdlaBlog.WebAPI.Local.Migrations
                         name: "FK_Comments_BlogFicas_BlogFicaId",
                         column: x => x.BlogFicaId,
                         principalTable: "BlogFicas",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Comments_BlogNodos_BlogNodoId",
                         column: x => x.BlogNodoId,
                         principalTable: "BlogNodos",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

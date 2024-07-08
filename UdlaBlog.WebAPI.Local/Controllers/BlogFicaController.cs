@@ -40,14 +40,8 @@ public class BlogFicaController : ControllerBase
     {
         var blogFica = new BlogFica
         {
-            Encabezado = blogFicaDto.Encabezado,
-            TituloPagina = blogFicaDto.TituloPagina,
+            Titulo = blogFicaDto.Titulo,
             Contenido = blogFicaDto.Contenido,
-            DescripcionCorta = blogFicaDto.DescripcionCorta,
-            UrlImagenDestacada = blogFicaDto.UrlImagenDestacada,
-            FechaPublicacion = blogFicaDto.FechaPublicacion,
-            Autor = blogFicaDto.Autor,
-            Visible = blogFicaDto.Visible,
             Comments = new List<Comment>()
         };
 
@@ -66,14 +60,8 @@ public class BlogFicaController : ControllerBase
         var blogFica = new BlogFica
         {
             Id = blogFicaDto.Id,
-            Encabezado = blogFicaDto.Encabezado,
-            TituloPagina = blogFicaDto.TituloPagina,
+            Titulo = blogFicaDto.Titulo,
             Contenido = blogFicaDto.Contenido,
-            DescripcionCorta = blogFicaDto.DescripcionCorta,
-            UrlImagenDestacada = blogFicaDto.UrlImagenDestacada,
-            FechaPublicacion = blogFicaDto.FechaPublicacion,
-            Autor = blogFicaDto.Autor,
-            Visible = blogFicaDto.Visible,
             Comments = new List<Comment>()
         };
 
